@@ -1,0 +1,39 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml:1:1-6:12
+INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml:1:1-6:12
+INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml:1:1-6:12
+INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml:1:1-6:12
+INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml:1:1-6:12
+INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml:1:1-6:12
+INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml:1:1-6:12
+	package
+		ADDED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml:2:11-43
+		INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+		INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+		ADDED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml:1:1-6:12
+		INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+		ADDED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml:1:1-6:12
+		INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml:1:11-69
+application
+ADDED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml:4:5-20
+uses-sdk
+INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+		ADDED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+		INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+		ADDED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml
+		INJECTED from /Users/karandeepsingh/AndroidStudioProjects/AdminCyclotourhub/OSMBonusPack/src/main/AndroidManifest.xml

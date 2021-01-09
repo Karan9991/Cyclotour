@@ -1,0 +1,128 @@
+org/osmdroid/bonuspack/utils/WebImageCache.java
+ org.osmdroid.bonuspack.utils.WebImageCache
+ org.osmdroid.bonuspack.utils.WebImageCache$1
+org/osmdroid/bonuspack/routing/RoadLeg.java
+ org.osmdroid.bonuspack.routing.RoadLeg
+ org.osmdroid.bonuspack.routing.RoadLeg$1
+org/osmdroid/bonuspack/routing/GoogleRoadManager.java
+ org.osmdroid.bonuspack.routing.GoogleDirectionsHandler
+ org.osmdroid.bonuspack.routing.GoogleRoadManager
+org/osmdroid/bonuspack/overlays/GroundOverlay.java
+ org.osmdroid.bonuspack.overlays.GroundOverlay
+org/osmdroid/bonuspack/location/GeocoderGraphHopper.java
+ org.osmdroid.bonuspack.location.GeocoderGraphHopper
+org/osmdroid/bonuspack/utils/PolylineEncoder.java
+ org.osmdroid.bonuspack.utils.PolylineEncoder
+org/osmdroid/bonuspack/kml/KmlGroundOverlay.java
+ org.osmdroid.bonuspack.kml.KmlGroundOverlay
+ org.osmdroid.bonuspack.kml.KmlGroundOverlay$1
+org/osmdroid/bonuspack/kml/Style.java
+ org.osmdroid.bonuspack.kml.Style
+ org.osmdroid.bonuspack.kml.Style$1
+org/osmdroid/bonuspack/location/POI.java
+ org.osmdroid.bonuspack.location.POI
+ org.osmdroid.bonuspack.location.POI$1
+ org.osmdroid.bonuspack.location.POI$ThumbnailTask
+org/osmdroid/bonuspack/kml/KmlGeometry.java
+ org.osmdroid.bonuspack.kml.KmlGeometry
+org/osmdroid/bonuspack/kml/KmlLineString.java
+ org.osmdroid.bonuspack.kml.KmlLineString
+ org.osmdroid.bonuspack.kml.KmlLineString$1
+org/osmdroid/bonuspack/kml/KmlPolygon.java
+ org.osmdroid.bonuspack.kml.KmlPolygon
+ org.osmdroid.bonuspack.kml.KmlPolygon$1
+org/osmdroid/bonuspack/routing/GraphHopperRoadManager.java
+ org.osmdroid.bonuspack.routing.GraphHopperRoadManager
+org/osmdroid/bonuspack/location/OverpassAPIProvider.java
+ org.osmdroid.bonuspack.location.OverpassAPIProvider
+org/osmdroid/bonuspack/routing/MapQuestRoadManager.java
+ org.osmdroid.bonuspack.routing.MapQuestRoadManager
+ org.osmdroid.bonuspack.routing.MapQuestRoadManager$RoadLink
+org/osmdroid/bonuspack/BuildConfig.java
+ org.osmdroid.bonuspack.BuildConfig
+org/osmdroid/bonuspack/location/NominatimPOIProvider.java
+ org.osmdroid.bonuspack.location.NominatimPOIProvider
+org/osmdroid/bonuspack/clustering/MarkerClusterer.java
+ org.osmdroid.bonuspack.clustering.MarkerClusterer
+ org.osmdroid.bonuspack.clustering.MarkerClusterer$1
+ org.osmdroid.bonuspack.clustering.MarkerClusterer$1$1
+org/osmdroid/bonuspack/kml/KmlMultiGeometry.java
+ org.osmdroid.bonuspack.kml.KmlMultiGeometry
+ org.osmdroid.bonuspack.kml.KmlMultiGeometry$1
+org/osmdroid/bonuspack/kml/HotSpot.java
+ org.osmdroid.bonuspack.kml.HotSpot
+ org.osmdroid.bonuspack.kml.HotSpot$1
+ org.osmdroid.bonuspack.kml.HotSpot$2
+ org.osmdroid.bonuspack.kml.HotSpot$Units
+org/osmdroid/bonuspack/kml/KmlPoint.java
+ org.osmdroid.bonuspack.kml.KmlPoint
+ org.osmdroid.bonuspack.kml.KmlPoint$1
+ org.osmdroid.bonuspack.kml.KmlPoint$OnKMLMarkerDragListener
+org/osmdroid/bonuspack/clustering/GridMarkerClusterer.java
+ org.osmdroid.bonuspack.clustering.GridMarkerClusterer
+org/osmdroid/bonuspack/location/GeoNamesPOIProvider.java
+ org.osmdroid.bonuspack.location.GeoNamesPOIProvider
+ org.osmdroid.bonuspack.location.GeoNamesXMLHandler
+org/osmdroid/bonuspack/location/PicasaPOIProvider.java
+ org.osmdroid.bonuspack.location.PicasaPOIProvider
+ org.osmdroid.bonuspack.location.PicasaXMLHandler
+org/osmdroid/bonuspack/kml/KmlDocument.java
+ org.osmdroid.bonuspack.kml.KmlDocument
+ org.osmdroid.bonuspack.kml.KmlDocument$1
+ org.osmdroid.bonuspack.kml.KmlDocument$2
+ org.osmdroid.bonuspack.kml.KmlDocument$KmlKeywords
+ org.osmdroid.bonuspack.kml.KmlDocument$KmlSaxHandler
+org/osmdroid/bonuspack/kml/ColorStyle.java
+ org.osmdroid.bonuspack.kml.ColorStyle
+ org.osmdroid.bonuspack.kml.ColorStyle$1
+org/osmdroid/bonuspack/utils/DouglasPeuckerReducer.java
+ org.osmdroid.bonuspack.utils.DouglasPeuckerReducer
+org/osmdroid/bonuspack/clustering/RadiusMarkerClusterer.java
+ org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer
+org/osmdroid/bonuspack/kml/LineStyle.java
+ org.osmdroid.bonuspack.kml.LineStyle
+ org.osmdroid.bonuspack.kml.LineStyle$1
+org/osmdroid/bonuspack/kml/KmlTrack.java
+ org.osmdroid.bonuspack.kml.KmlTrack
+ org.osmdroid.bonuspack.kml.KmlTrack$1
+org/osmdroid/bonuspack/routing/Road.java
+ org.osmdroid.bonuspack.routing.Road
+ org.osmdroid.bonuspack.routing.Road$1
+org/osmdroid/bonuspack/kml/StyleSelector.java
+ org.osmdroid.bonuspack.kml.StyleSelector
+org/osmdroid/bonuspack/kml/KmlPlacemark.java
+ org.osmdroid.bonuspack.kml.KmlPlacemark
+ org.osmdroid.bonuspack.kml.KmlPlacemark$1
+org/osmdroid/bonuspack/routing/RoadNode.java
+ org.osmdroid.bonuspack.routing.RoadNode
+ org.osmdroid.bonuspack.routing.RoadNode$1
+org/osmdroid/bonuspack/location/GeocoderNominatim.java
+ org.osmdroid.bonuspack.location.GeocoderNominatim
+org/osmdroid/bonuspack/kml/IconStyle.java
+ org.osmdroid.bonuspack.kml.IconStyle
+ org.osmdroid.bonuspack.kml.IconStyle$1
+org/osmdroid/bonuspack/overlays/FolderZOverlay.java
+ org.osmdroid.bonuspack.overlays.FolderZOverlay
+ org.osmdroid.bonuspack.overlays.FolderZOverlay$ZOverlay
+org/osmdroid/bonuspack/utils/BonusPackHelper.java
+ org.osmdroid.bonuspack.utils.BonusPackHelper
+ org.osmdroid.bonuspack.utils.BonusPackHelper$FlushedInputStream
+org/osmdroid/bonuspack/routing/RoadManager.java
+ org.osmdroid.bonuspack.routing.RoadManager
+org/osmdroid/bonuspack/routing/OSRMRoadManager.java
+ org.osmdroid.bonuspack.routing.OSRMRoadManager
+org/osmdroid/bonuspack/kml/KmlFolder.java
+ org.osmdroid.bonuspack.kml.KmlFolder
+ org.osmdroid.bonuspack.kml.KmlFolder$1
+org/osmdroid/bonuspack/kml/StyleMap.java
+ org.osmdroid.bonuspack.kml.StyleMap
+ org.osmdroid.bonuspack.kml.StyleMap$1
+org/osmdroid/bonuspack/location/FlickrPOIProvider.java
+ org.osmdroid.bonuspack.location.FlickrPOIProvider
+org/osmdroid/bonuspack/utils/HttpConnection.java
+ org.osmdroid.bonuspack.utils.HttpConnection
+org/osmdroid/bonuspack/clustering/StaticCluster.java
+ org.osmdroid.bonuspack.clustering.StaticCluster
+org/osmdroid/bonuspack/kml/KmlFeature.java
+ org.osmdroid.bonuspack.kml.KmlFeature
+ org.osmdroid.bonuspack.kml.KmlFeature$Styler

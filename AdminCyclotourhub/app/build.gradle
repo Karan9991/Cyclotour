@@ -1,0 +1,84 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.example.admincyclotourhub"
+        minSdkVersion 16
+     //   targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.2'
+    implementation 'androidx.navigation:navigation-ui:2.3.2'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
+    implementation project(path: ':OSMBonusPack')
+
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //Social Login
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.facebook.android:facebook-login:5.11.0'
+    // implementation 'com.facebook.android:facebook-login:[8.1)'
+
+    //Firebase
+    implementation 'com.google.firebase:firebase-analytics:17.2.2'
+    implementation 'com.google.firebase:firebase-core:17.2.2'
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
+//multidex
+    implementation 'com.android.support:multidex:1.0.3'
+//osm
+    implementation 'org.osmdroid:osmdroid-android:6.0.0'
+
+     // compile(name: 'osmbonuspack_v3.7', ext: 'aar')
+    implementation 'org.osmdroid:osmdroid-android:6.1.6'
+    implementation 'org.apache.commons:commons-lang3:3.3.4'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+
+    //Volley
+    implementation 'dev.dworks.libs:volleyplus:+'
+    //Google Util
+    implementation 'com.google.maps.android:android-maps-utils:2.0.3'
+
+
+
+}
+apply plugin: 'com.google.gms.google-services'

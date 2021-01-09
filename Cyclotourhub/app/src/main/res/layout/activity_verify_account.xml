@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_200"
+    tools:context=".SignIn">
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/okk"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"></ImageView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/scroll_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="130dp"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="630dp"
+                    android:layout_gravity="bottom"
+                    android:background="@color/white"
+                    android:elevation="5dp"
+                    app:cardCornerRadius="36dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="611dp"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_marginTop="20dp"
+                            android:layout_width="195dp"
+                            android:layout_height="41dp"
+                            android:layout_gravity="center"
+                            android:text="Account Verification"
+                            android:textAlignment="center"
+                            android:textColor="@color/purple_200"
+                            android:textSize="20dp"></TextView>
+
+                        <!--                        <TextView-->
+                        <!--                            android:layout_width="240dp"-->
+                        <!--                            android:layout_height="41dp"-->
+                        <!--                            android:layout_gravity="center"-->
+                        <!--                            android:text="With your social network"-->
+                        <!--                            android:textAlignment="center"-->
+                        <!--                            android:textColor="@color/purple_200"-->
+                        <!--                            android:textSize="15dp"></TextView>-->
+                    </LinearLayout>
+
+                    <!--                    <LinearLayout-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="60dp"-->
+                    <!--                        android:layout_marginTop="90dp"-->
+                    <!--                        android:orientation="horizontal">-->
+
+                    <!--                        <ImageView-->
+                    <!--                            android:layout_width="120dp"-->
+                    <!--                            android:layout_height="60dp"-->
+                    <!--                            android:src="@drawable/googleic"-->
+                    <!--                            android:layout_marginLeft="10dp"></ImageView>-->
+
+                    <!--                        <ImageView-->
+                    <!--                            android:layout_width="120dp"-->
+                    <!--                            android:layout_height="60dp"-->
+                    <!--                            android:src="@drawable/fb"-->
+                    <!--                            android:layout_marginLeft="10dp"></ImageView>-->
+
+                    <!--                        <ImageView-->
+                    <!--                            android:layout_width="120dp"-->
+                    <!--                            android:layout_height="60dp"-->
+                    <!--                            android:src="@drawable/insta"-->
+                    <!--                            android:layout_marginLeft="10dp"></ImageView>-->
+                    <!--                    </LinearLayout>-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="100dp">
+                        <!--                        <EditText-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:hint=" Username"-->
+                        <!--                            android:textColor="@color/tab_indicator_gray"-->
+                        <!--                            android:textColorHint="@color/tab_indicator_gray"-->
+                        <!--                            android:layout_marginLeft="23dp"-->
+                        <!--                            android:layout_marginRight="23dp"-->
+                        <!--                            android:background="@drawable/edittextdesign"-->
+                        <!--                            android:layout_height="45dp"></EditText>-->
+                        <EditText
+                            android:id="@+id/etEmailVerify"
+                            android:layout_width="match_parent"
+                            android:hint=" Email"
+                            android:textColor="@color/tab_indicator_gray"
+                            android:textColorHint="@color/tab_indicator_gray"                            android:layout_marginTop="8dp"
+                            android:layout_marginLeft="23dp"
+                            android:layout_marginRight="23dp"
+                            android:background="@drawable/edittextdesign"
+                            android:padding="5dp"
+                            android:layout_height="45dp"></EditText>
+                        <EditText
+                            android:id="@+id/etTokenVerify"
+                            android:layout_width="match_parent"
+                            android:hint=" Token"
+                            android:padding="5dp"
+                            android:inputType="textPassword"
+                            android:textColor="@color/tab_indicator_gray"
+                            android:textColorHint="@color/tab_indicator_gray"                            android:layout_marginTop="8dp"
+                            android:layout_marginLeft="23dp"
+                            android:layout_marginRight="23dp"
+                            android:background="@drawable/edittextdesign"
+                            android:layout_height="45dp"></EditText>
+                        <!--                        <com.google.android.material.textfield.TextInputLayout-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="45dp"-->
+                        <!--                            app:passwordToggleEnabled="true"-->
+                        <!--                            android:layout_marginLeft="23dp"-->
+                        <!--                            android:layout_marginRight="23dp"-->
+                        <!--                            app:boxBackgroundColor="@null"-->
+                        <!--                            android:background="@color/white"-->
+                        <!--                            android:hint="Password"-->
+                        <!--                            app:passwordToggleDrawable="@drawable/edittextpassword"-->
+                        <!--                            android:textColorHint="@color/tab_indicator_gray"-->
+                        <!--                            >-->
+                        <!--                            <com.google.android.material.textfield.TextInputEditText-->
+                        <!--                                android:layout_width="match_parent"-->
+                        <!--                                android:background="@color/white"-->
+                        <!--                                android:imeOptions="actionNext"-->
+                        <!--                                android:inputType="text"-->
+                        <!--                                android:layout_height="wrap_content"/>-->
+                        <!--                        </com.google.android.material.textfield.TextInputLayout>-->
+                        <!--                        -->
+                          <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnVerifyAccount"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="25dp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/btnstyle"
+                            android:layout_marginLeft="23dp"
+                            android:layout_marginRight="23dp"
+                            android:text="Verify Account"></androidx.appcompat.widget.AppCompatButton>
+
+
+                        <TextView
+                            android:id="@+id/tvsigninverify"
+                            android:layout_width="match_parent"
+                            android:text="Acccount Verified! Sign In"
+                            android:textAlignment="center"
+                            android:textSize="17dp"
+                            android:textColor="@color/purple_200"
+                            android:layout_marginLeft="23dp"
+                            android:layout_marginRight="23dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_height="50dp"></TextView>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
