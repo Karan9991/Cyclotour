@@ -8,4 +8,5 @@
  
 - CycloTourHub
   - OSMdroid map
+  - Social login with Google and Facebook
   - API Hit using Volley
