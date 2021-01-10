@@ -149,20 +149,17 @@ public class UpdateTrack extends AppCompatActivity implements Validate{
                     headers.put("Authorization", "Bearer " + getToken());
                     return headers;
                 }
-
             };
             jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
                     0,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             RequestQueue requestQueue = Volley.newRequestQueue(this);
-
             requestQueue.add(jsonObjectRequest);
 
         }catch (Exception e){
             progressDialog.dismiss();
             Log.i("excep0000  ",e.getMessage());
-
         }
     }
 

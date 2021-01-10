@@ -43,7 +43,7 @@
                     <ExpandableListView
                         android:id="@+id/expandableListView"
                         android:layout_width="353dp"
-                        android:layout_height="665dp"
+                        android:layout_height="635dp"
                         android:divider="@null"
                         android:dividerHeight="0.1dp"
                         android:groupIndicator="@null" >
@@ -58,11 +58,10 @@
             android:textAlignment="textStart"
             android:layout_height="66dp"
             android:layout_marginLeft="1dp"
-            android:elevation="5dp"
             android:drawableRight="@drawable/ic_baseline_all_inclusive_24"
             android:drawableLeft="@drawable/ic_baseline_add_24"
             android:text="Add NewTracks"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="5dp"
             />
 
     </LinearLayout>

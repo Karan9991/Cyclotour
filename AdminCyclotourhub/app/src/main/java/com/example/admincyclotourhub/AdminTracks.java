@@ -1,6 +1,7 @@
 package com.example.admincyclotourhub;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import com.example.admincyclotourhub.model.Tracks;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,6 +57,7 @@ public class AdminTracks extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Tracks");
 
+        //deleteCache(getApplicationContext());
         gettingToken();
 
         btnAddnewtrack = findViewById(R.id.btnAddnewtrack);
@@ -69,7 +72,7 @@ public class AdminTracks extends AppCompatActivity {
         });
     }
 
-private HashMap<String, Contacto> getContactos() {
+public HashMap<String, Contacto> getContactos() {
     HashMap<String, Contacto> listaC = new HashMap<>();
 
     final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -106,10 +109,17 @@ private HashMap<String, Contacto> getContactos() {
                             users.setCreated_at(childObject.getString("created_at"));
                             users.setUpdated_at(childObject.getString("updated_at"));
                             Log.i("i valiuvvvv","W "+i);
+                            if (childObject.getString("name").equals("null")){
+                                listaC.put(childObject.getString("from"), new Contacto(childObject.getString("from")+
+                                        "  -   "+childObject.getString("to"),
+                                        childObject.getString("distance"), childObject.getString("id"), R.drawable.img_11,childObject.getString("to"),childObject.getString("from")));
+                            }else {
+                                listaC.put(childObject.getString("name"), new Contacto(childObject.getString("from")+
+                                        "  -   "+childObject.getString("to"),
+                                        childObject.getString("distance"), childObject.getString("id"), R.drawable.img_11,childObject.getString("to"),childObject.getString("from")));
+                            }
 
-                            listaC.put(childObject.getString("name"), new Contacto(childObject.getString("from")+
-                                    "  -   "+childObject.getString("to"),
-                                    childObject.getString("distance"), childObject.getString("id"), R.drawable.img_11,childObject.getString("to"),childObject.getString("from")));
+
                             expandableListNombres = new ArrayList<>(listaContactos.keySet());
                             expandableListAdapter = new CustomExpandableListAdapter(getApplicationContext(),
                                     expandableListNombres, listaContactos);
@@ -159,6 +169,12 @@ private HashMap<String, Contacto> getContactos() {
     };
     RequestQueue requestQueue = Volley.newRequestQueue(this);
     requestQueue.add(stringRequest);
+    requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+        @Override
+        public void onRequestFinished(Request<Object> request) {
+            requestQueue.getCache().clear();
+        }
+    });
 
     return listaC;
 }
@@ -203,7 +219,6 @@ private HashMap<String, Contacto> getContactos() {
                     }
                 })
         {
-
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String,String> param = new HashMap<>();
@@ -212,18 +227,21 @@ private HashMap<String, Contacto> getContactos() {
                 param.put("device_name","admins laravel phone");
                 return param;
             }
-
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+       // requestQueue.getCache().clear();
+        requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+            @Override
+            public void onRequestFinished(Request<Object> request) {
+                requestQueue.getCache().clear();
+            }
+        });
     }
-
 
     @Override
     public boolean onSupportNavigateUp() {
-
         startActivity(new Intent(AdminTracks.this, MainActivity.class));
-
         return super.onSupportNavigateUp();
     }
     private void saveToken(String token){
@@ -232,5 +250,50 @@ private HashMap<String, Contacto> getContactos() {
                 = sharedPreferences.edit();
         myEdit.putString("token", token);
         myEdit.commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+       // deleteCache(getApplicationContext());
+        gettingToken();
+    }
+
+    private String getToken(){
+        SharedPreferences sh = getSharedPreferences("token", MODE_PRIVATE);
+        String login = sh.getString("token", null);
+        return login;
+    }
+
+    public static void deleteCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            deleteDir(dir);
+        } catch (Exception e) { e.printStackTrace();}
+    }
+    public static boolean deleteDir(File dir) {
+        Log.i("tag","test1");
+        if (dir != null && dir.isDirectory()) {
+            Log.i("tag","test2");
+
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                Log.i("tag","test3");
+
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    Log.i("tag","test4");
+
+                    return false;
+                }
+            }
+            return dir.delete();
+        } else if(dir!= null && dir.isFile()) {
+            Log.i("tag","test5");
+
+            return dir.delete();
+        } else {
+            return false;
+        }
     }
 }

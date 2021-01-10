@@ -38,6 +38,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<String> listTitulo;
     private HashMap<String, Contacto> expandableListDetalles;
+    AdminTracks adminTracks;
 
     public CustomExpandableListAdapter(Context context,
                                        List<String> listTitulo,
@@ -180,7 +181,6 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
                             String msg = jsonObject.getString("message");
                             if (status.equals("200")){
                                 Toast.makeText(context, " "+msg,Toast.LENGTH_SHORT).show();
-
                             }else{
                                 Toast.makeText(context, " Failed",Toast.LENGTH_SHORT).show();
                             }

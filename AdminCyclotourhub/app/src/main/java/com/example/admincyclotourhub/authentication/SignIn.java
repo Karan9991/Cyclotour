@@ -53,6 +53,7 @@ public class SignIn extends AppCompatActivity implements Validate {
     EditText etEmail, etPass;
     Button signnin;
     Boolean isValid;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,8 +116,11 @@ public class SignIn extends AppCompatActivity implements Validate {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String status = jsonObject.getString("status");
+                            JSONObject data = jsonObject.getJSONObject("data");
                              if (status.equals("200")){
-                                  saveCredential();
+                                 token = data.getString("token");
+                                 saveCredential();
+                                  saveToken(token);
                                  Intent intent = new Intent(SignIn.this, MainActivity.class);
                                  startActivity(intent);
                                   finish();
@@ -152,6 +156,14 @@ public class SignIn extends AppCompatActivity implements Validate {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+    private void saveToken(String token){
+        SharedPreferences sharedPreferences = getSharedPreferences("token", MODE_PRIVATE);
+        SharedPreferences.Editor myEdit
+                = sharedPreferences.edit();
+        myEdit.putString("token", token);
+        myEdit.commit();
     }
 
     private void saveCredential(){

@@ -79,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
         builder = new AlertDialog.Builder(this);
 
-        gettingToken();
+        token = getToken();
+                //gettingToken();
         BottomNavigationView navView = findViewById(R.id.adminnav_view);
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -296,6 +297,10 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
+    private String getToken(){
+        SharedPreferences sh = getSharedPreferences("token", MODE_PRIVATE);
+        String login = sh.getString("token", null);
+        return login;
+    }
 
 }

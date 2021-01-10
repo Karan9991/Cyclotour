@@ -143,6 +143,7 @@ public class AddNewTrack extends AppCompatActivity implements OnMapReadyCallback
     String[] addr = new String[2];
     List<String> latitu = new ArrayList<String>();
     List<String> longitu = new ArrayList<String>();
+    String kmlName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,6 +165,12 @@ public class AddNewTrack extends AppCompatActivity implements OnMapReadyCallback
         btnuploadkml = findViewById(R.id.btnuploadkml);
         btnclearall = findViewById(R.id.btnclearall);
         btnadd = findViewById(R.id.btnadd);
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (!isStoragePermissionGranted()){
+                requestPermissionStorage(AddNewTrack.this, 1);
+            }
+        }
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -326,7 +333,9 @@ public class AddNewTrack extends AppCompatActivity implements OnMapReadyCallback
                if (filePath!=null) {
                    Log.i("fp ", " bv" + latitu);
                        if (!latitu.isEmpty()){
-                           addTrack();
+                          // Toast.makeText(getApplicationContext(),"name "+kmlName,Toast.LENGTH_LONG).show();
+
+                             addTrack();
                        }
                }else {
                    Toast.makeText(getApplicationContext(),"Please Select KML file to Upload",Toast.LENGTH_LONG).show();
@@ -373,6 +382,50 @@ public class AddNewTrack extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
+    public boolean checkPermissionStorage(Activity activity){
+        int result = ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_GRANTED){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void requestPermissionStorage(Activity activity, final int code){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(activity,Manifest.permission.READ_EXTERNAL_STORAGE)){
+            Toast.makeText(activity,"Read permission allows us to access data. Please allow in App Settings for additional functionality.",Toast.LENGTH_LONG).show();
+
+        } else {
+            ActivityCompat.requestPermissions(activity,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},code);
+        }
+    }
+
+    public  boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v("TAG","Permission is granted");
+                return true;
+            } else {
+
+                Log.v("TAG","Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            Log.v("TAG","Permission is granted");
+            return true;
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            Log.v("TAG","Permission: "+permissions[0]+ "was "+grantResults[0]);
+            //resume tasks needing this permission
+        }
+    }
     private void addTrack() {
         double slt,slng,elt,elng,dis;
         slt = Double.valueOf(latitu.get(0));
@@ -388,6 +441,8 @@ public class AddNewTrack extends AppCompatActivity implements OnMapReadyCallback
            JSONObject jsonObject = new JSONObject("{" +
                    "\"to\":\"" + addr[0] + "\"," +
                    "\"from\":\"" + addr[addr.length-1] + "\"," +
+                   "\"name\":\"" + kmlName + "\"," +
+
                    "\"starting_lng\":\"" + slng + "\"," +
                    "\"starting_lat\":\"" + slt + "\"," +
                    "\"ending_lat\":\"" + elt + "\"," +
@@ -417,17 +472,22 @@ public class AddNewTrack extends AppCompatActivity implements OnMapReadyCallback
                    headers.put("Authorization", "Bearer " + getToken());
                    return headers;
                }
-
            };
            RequestQueue requestQueue = Volley.newRequestQueue(this);
-
            requestQueue.add(jsonObjectRequest);
+           requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+               @Override
+               public void onRequestFinished(Request<Object> request) {
+                   requestQueue.getCache().clear();
+               }
+           });
+           //requestQueue.getCache().clear();
+
        }catch (Exception e){
            progressDialog.dismiss();
 
        }
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -451,6 +511,7 @@ public class AddNewTrack extends AppCompatActivity implements OnMapReadyCallback
                             if (kmlLayer != null && kmlLayer.getContainers() != null) {
                                 for (KmlContainer container : kmlLayer.getContainers()) {
                                     container = container.getContainers().iterator().next();
+                                    kmlName = container.getProperty("name");
                                     if (container.hasPlacemarks()) {
 
                                         for (KmlPlacemark placemark : container.getPlacemarks()) {
@@ -498,7 +559,6 @@ public class AddNewTrack extends AppCompatActivity implements OnMapReadyCallback
 
                             String address = addressList.get(0).getAddressLine(0);
                             addr[0] = address;
-
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -550,14 +610,6 @@ public class AddNewTrack extends AppCompatActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
-//        ((WorkaroundMapFragment) getChildFragmentManager().findFragmentById(R.id.map))
-//                .setListener(new WorkaroundMapFragment.OnTouchListener() {
-//                    @Override
-//                    public void onTouch()
-//                    {
-//                        mScrollView.requestDisallowInterceptTouchEvent(true);
-//                    }
-//                });
     }
 
     public static void moveCameraToKml(KmlLayer kmlLayer, GoogleMap googleMap) {
