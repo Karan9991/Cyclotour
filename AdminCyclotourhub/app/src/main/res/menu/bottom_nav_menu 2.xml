@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_baseline_add_24"
+        android:title="Add Tracks"
+        android:gravity="end"
+        android:layout_gravity="end"
+        android:layout_marginLeft="80dip"/>
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_baseline_all_inclusive_24"
+        android:title="View Tracks"
+        android:gravity="end"
+        android:layout_gravity="end"
+        android:layout_marginLeft="80dip"
+        />
+
+    <item
+        android:id="@+id/navigation_notifications"
+
+        android:icon="@drawable/ic_baseline_people_24"
+        android:title="Users"
+        android:gravity="end"
+        android:layout_gravity="end"
+        android:layout_marginLeft="80dip">
+
+    </item>
+
+</menu>
