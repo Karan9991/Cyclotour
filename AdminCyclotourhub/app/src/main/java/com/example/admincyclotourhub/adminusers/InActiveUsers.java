@@ -58,20 +58,16 @@ public class InActiveUsers extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading Users...");
         progressDialog.show();
-        //creating a string request to send request to the url
         StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://www.Forutube.com/public/api/admin/home",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //hiding the progressbar after completion
-                        // progressBar.setVisibility(View.INVISIBLE);
                         progressDialog.dismiss();
                         Log.i("Usersssssss","W response: "+response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String status = jsonObject.getString("status");
                             String msg = jsonObject.getString("message");
-                            // if (status.equals("success")){
                             JSONObject jsondata = jsonObject.getJSONObject("data");
                             JSONArray tracks = (JSONArray)jsondata.get("tracks");
                             Log.i("Tracksss","W response: "+tracks);
@@ -92,7 +88,6 @@ public class InActiveUsers extends AppCompatActivity {
                                 users.setStatus(childObject.getString("status"));
                                 users.setCreated_at(childObject.getString("created_at"));
                                 users.setUpdated_at(childObject.getString("updated_at"));
-                                //tracksList.add(users);
                                 Log.i("i valiuvvvv","W "+i);
                                 noOfTracks = String.valueOf(i+1);
                             }

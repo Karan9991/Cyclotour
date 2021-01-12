@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">AdminCyclotourhub</string>
-    <string name="title_home">Tracks</string>
-    <string name="title_dashboard">My Tracks</string>
-    <string name="title_notifications">Profile</string>
-    <string name="title_activity_maps">Map</string>
-</resources>

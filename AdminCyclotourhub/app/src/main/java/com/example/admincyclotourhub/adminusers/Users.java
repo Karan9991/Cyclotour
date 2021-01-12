@@ -61,13 +61,10 @@ public class Users extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading Users...");
         progressDialog.show();
-        //creating a string request to send request to the url
         StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://www.Forutube.com/public/api/admin/home",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //hiding the progressbar after completion
-                        // progressBar.setVisibility(View.INVISIBLE);
                         progressDialog.dismiss();
                         Log.i("Usersssssss","W response: "+response);
                         try {

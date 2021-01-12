@@ -1,9 +1,13 @@
 package com.example.admincyclotourhub;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -39,15 +44,16 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
     private List<String> listTitulo;
     private HashMap<String, Contacto> expandableListDetalles;
     AdminTracks adminTracks;
+    Activity activity;
 
-    public CustomExpandableListAdapter(Context context,
+    public CustomExpandableListAdapter(Context context, Activity activityy,
                                        List<String> listTitulo,
                                        HashMap<String, Contacto> expandableListDetalles) {
         this.context = context;
         this.listTitulo = listTitulo;
         this.expandableListDetalles = expandableListDetalles;
+        this.activity = activityy;
     }
-
 
     @Override
     public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
@@ -73,7 +79,29 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteTrack(contacto.getDireccion());
+
+                Log.i("testinggggggg"," "+contacto.getDireccion()+" n "+contacto.getNumero()+" c "+contacto.getCorreo());
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setTitle("Delete");
+                builder.setMessage("Are you Sure?");
+                builder.setCancelable(true);
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                          deleteTrack(contacto.getDireccion(), groupPosition);
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
             }
         });
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +119,6 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
         Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
         convertView.startAnimation(animation);
-
 
         return convertView;
     }
@@ -160,31 +187,24 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
-    private void deleteTrack(String id) {
-      //  final ProgressDialog progressDialog = new ProgressDialog(context.getApplicationContext());
-    //    progressDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+    private void deleteTrack(String id, int groupPosition) {
 
-  //      progressDialog.setMessage("Deleting Track...");
-//        progressDialog.show();
-        //creating a string request to send request to the url
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, "https://www.Forutube.com/public/api/admin/tracks/"+id,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //hiding the progressbar after completion
-                        // progressBar.setVisibility(View.INVISIBLE);
-                       // progressDialog.dismiss();
                         Log.i("rrrrrrrrr","W del: "+response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String status = jsonObject.getString("status");
                             String msg = jsonObject.getString("message");
                             if (status.equals("200")){
+                                listTitulo.remove(listTitulo.get(groupPosition));
+                                notifyDataSetChanged();
                                 Toast.makeText(context, " "+msg,Toast.LENGTH_SHORT).show();
                             }else{
                                 Toast.makeText(context, " Failed",Toast.LENGTH_SHORT).show();
                             }
-                          //  progressDialog.dismiss();
                         } catch (Exception e) {
                             e.printStackTrace();
                             Toast.makeText(context, "Delete Operation Failed : "+e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -194,8 +214,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //displaying the error in toast if occurrs
-                        //progressDialog.dismiss();
+
 
                         Toast.makeText(context, "Delete Operation Failed "+error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -210,7 +229,8 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
-    }
+
+           }
     private String getToken(){
         SharedPreferences sh = context.getSharedPreferences("token", MODE_PRIVATE);
         String login = sh.getString("token", null);

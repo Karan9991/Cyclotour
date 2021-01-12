@@ -333,8 +333,6 @@ public class AddNewTrack extends AppCompatActivity implements OnMapReadyCallback
                if (filePath!=null) {
                    Log.i("fp ", " bv" + latitu);
                        if (!latitu.isEmpty()){
-                          // Toast.makeText(getApplicationContext(),"name "+kmlName,Toast.LENGTH_LONG).show();
-
                              addTrack();
                        }
                }else {
@@ -413,7 +411,8 @@ public class AddNewTrack extends AppCompatActivity implements OnMapReadyCallback
                 return false;
             }
         }
-        else { //permission is automatically granted on sdk<23 upon installation
+        else {
+            //permission is automatically granted on sdk<23 upon installation
             Log.v("TAG","Permission is granted");
             return true;
         }
@@ -481,7 +480,6 @@ public class AddNewTrack extends AppCompatActivity implements OnMapReadyCallback
                    requestQueue.getCache().clear();
                }
            });
-           //requestQueue.getCache().clear();
 
        }catch (Exception e){
            progressDialog.dismiss();

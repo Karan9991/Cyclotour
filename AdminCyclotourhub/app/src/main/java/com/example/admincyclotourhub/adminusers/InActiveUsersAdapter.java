@@ -43,8 +43,6 @@ public class InActiveUsersAdapter extends BaseExpandableListAdapter {
     String test2= "Tracks"+"\n";
     String test3="";
 
-    boolean userActive;
-
     public InActiveUsersAdapter(Context context,
                               List<String> listTitulo,
                               HashMap<String, UsersContacto> expandableListDetalles) {
@@ -69,34 +67,23 @@ public class InActiveUsersAdapter extends BaseExpandableListAdapter {
         TextView tvnooftracks = convertView.findViewById(R.id.tvusernooftracks);
         TextView tvDuration = convertView.findViewById(R.id.tvUserDuration);
         TextView tvTrack = convertView.findViewById(R.id.tvuserTrack);
-        //  tvTrack.setText(contacto.getDireccion());
 
         Log.i("idddddd"," "+contacto.getDireccion());
 
-        //fetchDuration();
-//
         StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://www.Forutube.com/public/api/admin/users/"+contacto.getDireccion(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //hiding the progressbar after completion
-                        // progressBar.setVisibility(View.INVISIBLE);
-                        // progressDialog.dismiss();
                         Log.i("durationnnn","W response: "+response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            //  String status = jsonObject.getString("status");
-                            // String msg = jsonObject.getString("message");
-                            // if (status.equals("success")){
+
                             JSONObject jsondata = jsonObject.getJSONObject("data");
                             JSONObject jsonuser = jsondata.getJSONObject("user");
-                            // JSONObject jsontracks = jsonuser.getJSONObject("tracks");
-                            // JSONObject jsonspent = jsontracks.getJSONObject("spent_time");
+
                             JSONArray tracks = (JSONArray)jsonuser.get("tracks");
-                            // Log.i("spent time ","W response: "+jsonspent.getString("start_time"));
                             for (int i = 0; i < tracks.length(); i++) {
                                 JSONObject childObject = tracks.getJSONObject(i);
-                                //  JSONObject vv = childObject.getJSONObject("spent_time");
                                 JSONArray tr = (JSONArray)childObject.get("spent_time");
                                 name = new String[tracks.length()];
                                 name[i] = childObject.get("name").toString();
@@ -105,7 +92,6 @@ public class InActiveUsersAdapter extends BaseExpandableListAdapter {
                                 Log.i("name    ","ccc"+name[i]);
                                 for (int j=0;j<tr.length(); j++){
                                     JSONObject one = tr.getJSONObject(j);
-                                    // JSONObject vvv = one.getJSONObject("start_time");
                                     Log.i("i start tiome","W "+one.getString("start_time"));
                                     Log.i("i end tiome","W "+one.getString("end_time"));
                                     Date date1=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(one.getString("start_time"));
@@ -121,11 +107,9 @@ public class InActiveUsersAdapter extends BaseExpandableListAdapter {
                             }
                             Log.i("testingggggggg","g "+test);
                             tvDuration.setText(test3);
-                            //tvTrack.setText(test2);
 
                         } catch (Exception e) {
                             e.printStackTrace();
-                            //progressDialog.dismiss();
                         }
                     }
                 },
@@ -144,12 +128,11 @@ public class InActiveUsersAdapter extends BaseExpandableListAdapter {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
-        //
+
         tvemail.setText(contacto.getNumero());
         tvnooftracks.setText(contacto.getCorreo());
         test3 = null;
         test3 = "";
-        //tvDuration.setText(name[0]);
         Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
         convertView.startAnimation(animation);
 
@@ -162,7 +145,6 @@ public class InActiveUsersAdapter extends BaseExpandableListAdapter {
 
         String nombre = (String) getGroup(groupPosition);
         UsersContacto contacto = (UsersContacto) getChild(groupPosition,0);
-        // Contacto contac = (Contacto) getChild(groupPosition,0);
 
         if (convertView == null) {
 
@@ -182,81 +164,10 @@ public class InActiveUsersAdapter extends BaseExpandableListAdapter {
             circleImageView.setImageDrawable(convertView.getResources().getDrawable(R.drawable.ic_baseline_brightnessred_1_24));
 
         }
-//        else if(contacto.getDireccion().equals("0")){
-//            circleImageView.setImageDrawable(convertView.getResources().getDrawable(R.drawable.ic_baseline_brightnessred_1_24));
-//        }
         return convertView;
     }
-    private void fetchDuration() {
 
-        //final ProgressDialog progressDialog = new ProgressDialog(context);
-        // progressDialog.setMessage("Loading Users...");
-        //progressDialog.show();
-        //creating a string request to send request to the url
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://www.Forutube.com/public/api/admin/users/7",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        //hiding the progressbar after completion
-                        // progressBar.setVisibility(View.INVISIBLE);
-                        // progressDialog.dismiss();
-                        Log.i("durationnnn","W response: "+response);
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            //  String status = jsonObject.getString("status");
-                            // String msg = jsonObject.getString("message");
-                            // if (status.equals("success")){
-                            JSONObject jsondata = jsonObject.getJSONObject("data");
-                            JSONObject jsonuser = jsondata.getJSONObject("user");
-                            // JSONObject jsontracks = jsonuser.getJSONObject("tracks");
-                            // JSONObject jsonspent = jsontracks.getJSONObject("spent_time");
-                            JSONArray tracks = (JSONArray)jsonuser.get("tracks");
-                            // Log.i("spent time ","W response: "+jsonspent.getString("start_time"));
-                            for (int i = 0; i < tracks.length(); i++) {
-                                JSONObject childObject = tracks.getJSONObject(i);
-                                //  JSONObject vv = childObject.getJSONObject("spent_time");
-                                JSONArray tr = (JSONArray)childObject.get("spent_time");
-                                name = new String[tracks.length()];
-                                name[i] = childObject.get("name").toString();
-                                Log.i("name    ","ccc"+name[i]);
-                                for (int j=0;j<tr.length(); j++){
-                                    JSONObject one = tr.getJSONObject(j);
-                                    // JSONObject vvv = one.getJSONObject("start_time");
-                                    Log.i("i start tiome","W "+one.getString("start_time"));
-                                    Log.i("i end tiome","W "+one.getString("end_time"));
-                                    Date date1=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(one.getString("start_time"));
-                                    Date date2=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(one.getString("end_time"));
-
-                                    Log.i("conversionnnnn","ccc"+printDifference(date1, date2));
-                                    dura = new String[tr.length()];
-                                    dura[j] = printDifference(date1, date2);
-                                    Log.i("dura    ","ccc"+dura[j]);
-                                }
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            //progressDialog.dismiss();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                    }
-                })
-        {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String,String> headers = new HashMap<>();
-                headers.put("Authorization", "Bearer "+getToken());
-                return headers;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        requestQueue.add(stringRequest);
-    }
     public String printDifference(Date startDate, Date endDate) {
-        //milliseconds
         long different = endDate.getTime() - startDate.getTime();
 
         System.out.println("startDate : " + startDate);
@@ -276,66 +187,7 @@ public class InActiveUsersAdapter extends BaseExpandableListAdapter {
         different = different % minutesInMilli;
         long elapsedSeconds = different / secondsInMilli;
         return "Days "+elapsedDays+ " Hours "+elapsedHours+" Minutes "+elapsedMinutes+" Seconds "+elapsedSeconds;
-        // elapsedDays+ elapsedHours+ elapsedMinutes+ elapsedSeconds;
-//        System.out.printf(
-//                "%d days, %d hours, %d minutes, %d seconds%n",
-//                elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds);
     }
-//    private void addTrac() {
-//        double slt,slng,elt,elng,dis;
-//        slt = Double.valueOf(lati[0][0]);
-//        slng = Double.valueOf(lati[1][0]);
-//        elng = Double.valueOf(lati[1][lati.length-1]);
-//        elt = Double.valueOf(lati[0][lati.length-1]);
-//        dis = findDistance();
-////        final ProgressDialog progressDialog = new ProgressDialog(this);
-////        progressDialog.setMessage("Adding Track...");
-////        progressDialog.show();
-//        try {
-//            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, "https://www.Forutube.com/public/api/admin/users/7", null, new Response.Listener<JSONObject>() {
-//                @Override
-//                public void onResponse(JSONObject response) {
-//                    for (String key : response.getK()) {
-//                        JSONObject entry = response.getJSONObject(key);
-//                        Log.d(TAG, entry.toString());
-//
-//                        JSONObject phone = entry.getJSONObject("basic");
-//                        String name = phone.getString("title");
-//                        String email = phone.getString("description");
-//                        JSONObject comments = entry.getJSONObject("comments");
-//                        String home = comments.getString("count");
-//                        JSONObject like = entry.getJSONObject("likes");
-//                        String mobile = like.getString("count");
-//
-//                    }
-//                }
-//            }, new Response.ErrorListener() {
-//
-//                @Override
-//                public void onErrorResponse(VolleyError error) {
-//                  //  progressDialog.dismiss();
-//                    //Toast.makeText(getApplicationContext(),"Failed", Toast.LENGTH_LONG).show();
-//                }
-//            })
-//            {
-//                @Override
-//                public Map<String, String> getHeaders() throws AuthFailureError {
-//                    HashMap<String, String> headers = new HashMap<>();
-//                    headers.put("Authorization", "Bearer " + getToken());
-//                    return headers;
-//                }
-//
-//            };
-//            RequestQueue requestQueue = Volley.newRequestQueue(context);
-//
-//            requestQueue.add(jsonObjReq);
-//            //progressDialog.dismiss();
-//
-//        }catch (Exception e){
-//          //  progressDialog.dismiss();
-//
-//        }
-//    }
 
     private String getToken(){
         SharedPreferences sh = context.getSharedPreferences("token", MODE_PRIVATE);

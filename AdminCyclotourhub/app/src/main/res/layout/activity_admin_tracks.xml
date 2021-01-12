@@ -39,7 +39,11 @@
                     android:gravity="center"
 
                     >
-
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/swipe_container"
+    android:layout_width="353dp"
+    android:layout_height="635dp"
+    >
                     <ExpandableListView
                         android:id="@+id/expandableListView"
                         android:layout_width="353dp"
@@ -48,7 +52,7 @@
                         android:dividerHeight="0.1dp"
                         android:groupIndicator="@null" >
                     </ExpandableListView>
-
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
                 </LinearLayout>
 
         <Button
